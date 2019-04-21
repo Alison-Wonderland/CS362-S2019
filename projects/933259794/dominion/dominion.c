@@ -649,7 +649,8 @@ int new_adventurer(int card, int currentPlayer, struct gameState *state)
 	int z = 0;
 	int cardDrawn;
 	int temphand[MAX_HAND];
-    while(drawntreasure<2){
+	//bug, draw treasure will allow three insetad of <2
+    while(drawntreasure<3){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 		shuffle(currentPlayer, state);
 		}
@@ -673,7 +674,6 @@ int new_adventurer(int card, int currentPlayer, struct gameState *state)
 int new_smithy(int card, int currentPlayer, int handPos, struct gameState *state)
 {
 	int i;
-	//bug:  change i < 3 to i < 2
       for (i = 0; i < 2; i++)
 	{//introducted bug that has player draw card twice
 	  drawCard(currentPlayer, state);
