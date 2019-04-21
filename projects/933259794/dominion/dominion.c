@@ -681,10 +681,62 @@ int new_smithy(int card, int currentPlayer, int handPos, struct gameState *state
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
-		
-  
+	
 }
 
+int new_village(int card, int currentPlayer, int handPos, struct gameState *state)
+{
+   //+1 Card
+    drawCard(currentPlayer, state);
+			
+    //+2 Actions
+    state->numActions = state->numActions + 2;
+			
+    //discard played card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+    return 0;
+
+}
+
+ int new_greatHall(int card, int currentPlayer, int handPos, struct gameState *state)
+ {
+      //+1 Card
+      drawCard(currentPlayer, state);
+			
+      //+1 Actions
+      state->numActions++;
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+ }
+
+ int new_councilRoom(int card, int currentPlayer, int handPos, struct gameState *state)
+ {
+ 	  int i;
+      //+4 Cards
+      for (i = 0; i < 4; i++)
+	{
+	  drawCard(currentPlayer, state);
+	}
+			
+      //+1 Buy
+      state->numBuys++;
+			
+      //Each other player draws a card
+      for (i = 0; i < state->numPlayers; i++)
+	{
+	  if ( i != currentPlayer )
+	    {
+	      drawCard(i, state);
+	    }
+	}
+			
+      //put played card in played card pile
+      discardCard(handPos, currentPlayer, state, 0);
+			
+      return 0;
+ }
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
@@ -710,31 +762,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
+	//assignment 2 refactor
       new_adventurer(card, currentPlayer, state);
 			
     case council_room:
-      //+4 Cards
-      for (i = 0; i < 4; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //+1 Buy
-      state->numBuys++;
-			
-      //Each other player draws a card
-      for (i = 0; i < state->numPlayers; i++)
-	{
-	  if ( i != currentPlayer )
-	    {
-	      drawCard(i, state);
-	    }
-	}
-			
-      //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 0);
-			
-      return 0;
+	//assignment 2 refactor
+		new_councilRoom(card, currentPlayer, handPos, state);
 			
     case feast:
       //gain card with cost up to 5
@@ -854,18 +887,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
+	//assignment 2 refactor
      new_smithy(card, currentPlayer, handPos, state);
 
 	case village:
-    //+1 Card
-    drawCard(currentPlayer, state);
-			
-    //+2 Actions
-    state->numActions = state->numActions + 2;
-			
-    //discard played card from hand
-    discardCard(handPos, currentPlayer, state, 0);
-    return 0;
+	//assignment 2 refactor
+     new_village(card, currentPlayer, handPos, state);
     case baron:
       state->numBuys++;//Increase buys by 1!
       if (choice1 > 0){//Boolean true or going to discard an estate
@@ -918,15 +945,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+	//assignment 2, refactor
+       new_greatHall(card, currentPlayer, handPos, state);
 		
     case minion:
       //+1 action
