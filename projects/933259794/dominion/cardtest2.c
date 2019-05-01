@@ -46,13 +46,11 @@ int main(){
 		memcpy(&testG, &G, sizeof(struct gameState));
 		originalHandCount = testG.handCount[0];
 
-		printf("%d\n", originalHandCount);
 		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
  
-		printf("%d\n", testG.handCount[0]);
 		drawnCards = testG.handCount[0] - originalHandCount;
 		result = drawnCards;
-		printf("%d\n", drawnCards);
+
 		//check how many total drawn cards there are and output result
 		if(result != 1)
 		{
