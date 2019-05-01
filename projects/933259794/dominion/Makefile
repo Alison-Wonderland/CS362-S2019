@@ -21,8 +21,10 @@ testDrawCard: testDrawCard.c dominion.o rngs.o
 
 cardtest1: cardtest1.c dominion.o
 	gcc -o cardtest1 dominion.c rngs.c cardtest1.c $(CFLAGS)
-	
 
+cardtest2: cardtest2.c dominion.o
+	gcc -o cardtest2 dominion.c rngs.c cardtest2.c $(CFLAGS)
+	
 #########
 
 badTestDrawCard: badTestDrawCard.c dominion.o rngs.o

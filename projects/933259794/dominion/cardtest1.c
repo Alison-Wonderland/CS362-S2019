@@ -15,11 +15,6 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include "rngs.h"
-#include <stdio.h>
-#include <math.h>
 
 /*test new_adventurer function which includes refactored code and an introduced bug which lets 
 the player draw three treasure cards instead of two, test the total drawn treasure cards
@@ -44,7 +39,7 @@ int main(){
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
 
-		printf("----------------- Unit Test 1 ----------------\n");
+		printf("----------------- Card Test 1 ----------------\n");
 
 		// copy the game state to a test case
 		memcpy(&testG, &G, sizeof(struct gameState));
@@ -58,7 +53,7 @@ int main(){
 
 		result = drawntreasure;
 
-		//then assert how many total treasure cards there are and output result
+		//then check how many total treasure cards there are and output result
 		if(result != 2)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
@@ -67,7 +62,5 @@ int main(){
 		{
 			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
 		}
-
-
 
    }
