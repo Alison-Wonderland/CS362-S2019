@@ -1,4 +1,4 @@
-CFLAGS= -Wall -fpic -coverage -lm -std=c99
+CFLAGS = -Wall -fpic -coverage -lm -std=c99
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -19,7 +19,7 @@ testDrawCard: testDrawCard.c dominion.o rngs.o
 	#cardtest1 >> unittestresults.out
 #	gcov dominion.c -b >> unittestresults.out 
 
-cardtest1: cardtest1.c dominion.c
+cardtest1: cardtest1.c dominion.o
 	gcc -o cardtest1 dominion.c rngs.c cardtest1.c $(CFLAGS)
 	
 
