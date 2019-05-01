@@ -11,7 +11,15 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <math.h>
 #include "rngs.h"
+#include <stdlib.h>
+
+#include "dominion.h"
+#include "dominion_helpers.h"
+#include "rngs.h"
+#include <stdio.h>
+#include <math.h>
 
 //test new_adventurer function which includes refactored code
 //test the total drawn treasure
@@ -31,7 +39,9 @@ int main(){
 		int numPlayers = 2;
 		int currentPlayer = 0;
 		struct gameState G, testG;
-		int card = 1 //adventurer
+		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+		int i;
 
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
@@ -42,17 +52,17 @@ int main(){
 		memcpy(&testG, &G, sizeof(struct gameState));
 		cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
 
-		while(state->handCount[currentPlayer])
+		currentPlayer = whoseTurn(&testG);
+
+		for (i = 0; i < testG.handCount[0]; i++)
 		{
-			cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-			if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-			 drawntreasure++;
+			if (testG.hand[0][i] == (copper || silver || gold))
+				drawntreasure++;
 		}
 
 		result = drawntreasure;
 
 		//then assert how many total treasure cards there are and output result
-
-		printf("Test Draw Cards")
+		printf("Result: %d  Expected: %d \n", result, expected);
 
    }
