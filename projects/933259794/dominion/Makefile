@@ -27,6 +27,9 @@ cardtest2: cardtest2.c dominion.o
 
 cardtest3: cardtest3.c dominion.o
 	gcc -o cardtest3 dominion.c rngs.c cardtest3.c $(CFLAGS)
+
+cardtest4: cardtest4.c dominion.o
+	gcc -o cardtest4 dominion.c rngs.c cardtest4.c $(CFLAGS)
 	
 #########
 

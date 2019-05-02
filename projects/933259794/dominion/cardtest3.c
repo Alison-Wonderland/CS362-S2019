@@ -50,7 +50,7 @@ int main(){
 		actions = testG.numActions - prevActions;
 		result = actions;
 
-		//check how many total drawn cards there are and output result
+		//check how many total actions there are and output result
 		if(result != 2)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
