@@ -24,7 +24,6 @@ fail = any other action
 int main(){
 		int expected = 1;
 		int result = 0;
-		int player = 0;
 
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 		int seed = 1000;
@@ -36,7 +35,6 @@ int main(){
 
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);
-		player = whoseTurn(&test);
 
 		printf("----------------- Card Test 1 ----------------\n");
 
@@ -44,7 +42,7 @@ int main(){
 		memcpy(&test, &game, sizeof(struct gameState));
 		cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
 
-		result = test.discardCount[player];
+		result = test.discardCount[0];
 
 		//then check if discarded and output result
 		if(result != expected)
