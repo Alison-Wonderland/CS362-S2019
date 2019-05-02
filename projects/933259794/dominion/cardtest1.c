@@ -1,7 +1,7 @@
 /* -----------------------------------------------------------------------
  Name: Kristin Ingellis
  Date: 04/30/2019
- Description: This unit test examines the draw treasure aspect of the 
+ Description: This card test examines the discard aspect of the 
  * refactored adventurer function which is named new_adventurer.
  * -----------------------------------------------------------------------
  */
@@ -16,10 +16,9 @@
 #include <stdlib.h>
 
 
-/*test new_adventurer function which includes refactored code and an introduced bug which lets 
-the player draw three treasure cards instead of two, test the total drawn treasure cards
-pass = 2 total treasure drawn
-fail = any other number
+/*test new_adventurer function to verify the player discards a card 
+pass = card discarded
+fail = any other action
 */
 
 int main(){
@@ -30,30 +29,25 @@ int main(){
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 		int seed = 1000;
 		int numPlayers = 2;
-		struct gameState G, testG;
+		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 		int i;
 
 		// initialize a game state and player cards
-		initializeGame(numPlayers, k, seed, &G);
+		initializeGame(numPlayers, k, seed, &game);
 
 		printf("----------------- Card Test 1 ----------------\n");
 
 		// copy the game state to a test case
-		memcpy(&testG, &G, sizeof(struct gameState));
-		cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
+		memcpy(&test, &game, sizeof(struct gameState));
+		cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
 
-		for (i = 0; i < testG.handCount[0]; i++)
-		{
-			if (testG.hand[0][i] == (copper || silver || gold))
-				drawntreasure++;
-		}
+		result = test.discardCount[player];
+		expected = gameState.discardCount[player];
 
-		result = drawntreasure;
-
-		//then check how many total treasure cards there are and output result
-		if(result != 2)
+		//then check if discarded and output result
+		if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}

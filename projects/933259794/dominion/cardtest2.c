@@ -32,23 +32,23 @@ int main(){
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 		int seed = 1000;
 		int numPlayers = 2;
-		struct gameState G, testG;
+		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 		int i;
 
 		// initialize a game state and player cards
-		initializeGame(numPlayers, k, seed, &G);
+		initializeGame(numPlayers, k, seed, &game);
 
 		printf("----------------- Card Test 2 ----------------\n");
 
 		// copy the game state to a test case
-		memcpy(&testG, &G, sizeof(struct gameState));
-		originalHandCount = testG.handCount[0];
+		memcpy(&test, &game, sizeof(struct gameState));
+		originalHandCount = test.handCount[0];
 
-		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+		cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
  
-		drawnCards = testG.handCount[0] - originalHandCount;
+		drawnCards = test.handCount[0] - originalHandCount;
 		result = drawnCards;
 
 		//check how many total drawn cards there are and output result
