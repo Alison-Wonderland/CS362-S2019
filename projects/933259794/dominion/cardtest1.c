@@ -31,7 +31,6 @@ int main(){
 		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
-		int i;
 
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);

@@ -1,7 +1,7 @@
 /* -----------------------------------------------------------------------
  Name: Kristin Ingellis
  Date: 05/01/2019
- Description: This unit test examines the deck count which should decrease by three cards
+ Description: This card test examines the deck count which should decrease by three cards
  *in the new_smithy function which has a bug that has the player draw two times per loop.
  * -----------------------------------------------------------------------
  */
@@ -17,7 +17,7 @@
 
 /*test new_smithy function and that it does decrease the deck count correctly
 pass = deck count - 3
-fail = deck count - any other number
+fail = deck count is any other number
 */
 
 int main(){
@@ -31,7 +31,6 @@ int main(){
 		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
-		int i;
 
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);

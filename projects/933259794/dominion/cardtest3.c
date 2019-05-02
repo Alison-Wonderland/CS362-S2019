@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------
  Name: Kristin Ingellis
  Date: 05/02/2019
- Description: This unit test examines the extra actions aspect of the 
- * refactored village function which is named new_village.
+ Description: This card test examines the choice aspect of the steward card
+ *relating to the coin choice.
  * -----------------------------------------------------------------------
  */
 
@@ -15,18 +15,15 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-/*test new_village function which includes refactored code and an introduced bug which lets 
-the player gain four extra actions instead of two extra actions This unit test will test 
-the total actions added to the player's actions.'
-pass = 2 actions added
-fail = any other number
+/*test the choice and it's affect on the results, this one uses the coin option 
+pass = correct decision tree is chosen when choice = 2
+fail = any other decision tree is chosen
 */
 
 int main(){
 		int expected = 2;
 		int result = 0;
-		int actions = 0;
-		int prevActions = 0;
+		int prevCoinState = 0;
 
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 		int seed = 1000;
@@ -34,7 +31,6 @@ int main(){
 		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
-		int i;
 
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);
@@ -43,15 +39,17 @@ int main(){
 
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));
-
-		prevActions = test.numActions;
-		cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
+		
+		prevCoinState = test.coins;
+		//draw coins choice
+		choice1 = 2;
+		cardEffect(steward, choice1, choice2, choice3, &test, handpos, &bonus);
  
-		actions = test.numActions - prevActions;
-		result = actions;
+		expected = prevCoinState + 2;
+		result = test.coins;
 
 		//check how many total actions there are and output result
-		if(result != 2)
+		if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}
