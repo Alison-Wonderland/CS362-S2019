@@ -22,7 +22,7 @@ fail = any other number
 */
 
 int main(){
-		int expected = 2;
+		int expected = 1;
 		int result = 1;
 		int buys = 0;
 		int prevBuys = 0;
@@ -38,7 +38,7 @@ int main(){
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
 
-		printf("----------------- Card Test 3 ----------------\n");
+		printf("----------------- Unit Test 4 ----------------\n");
 
 		// copy the game state to a test case
 		memcpy(&testG, &G, sizeof(struct gameState));
