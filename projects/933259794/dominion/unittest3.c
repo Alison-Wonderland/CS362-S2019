@@ -51,7 +51,7 @@ int main(){
 		result = actions;
 
 		//check how many total actions there are and output result
-		if(result != 2)
+		if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}

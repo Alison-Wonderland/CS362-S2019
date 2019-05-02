@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------
  Name: Kristin Ingellis
  Date: 05/01/2019
- Description: This unit test examines the draw card aspect of the 
- * refactored smithy function which is named new_smithy.
+ Description: This unit test examines the deck count which should decrease by three cards
+ *in the new_smithy function which has a bug that has the player draw two times per loop.
  * -----------------------------------------------------------------------
  */
 
@@ -15,16 +15,13 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-/*test new_smithy function which includes refactored code and an introduced bug which lets 
-the player draw  a card twice instead of once for each loop for a total of 4 draw cards,
-The total drawn cards with the introduced bug should be 3 since there is one discard function in the
-new_smithy function which is the same as the original smithy function.  This unit test will test the total drawn cards
-pass = 1 card drawn
-fail = any other number
+/*test new_smithy function and that it does decrease the deck count correctly
+pass = deck count - 3
+fail = deck count - any other number
 */
 
 int main(){
-		int expected = 1;
+		int expected = 3;
 		int result = 0;
 		int drawnCards = 0;
 		int originalHandCount = 0;
@@ -52,7 +49,7 @@ int main(){
 		result = drawnCards;
 
 		//check how many total drawn cards there are and output result
-		if(result != 1)
+		if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}

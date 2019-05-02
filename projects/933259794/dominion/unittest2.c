@@ -52,7 +52,7 @@ int main(){
 		result = drawnCards;
 
 		//check how many total drawn cards there are and output result
-		if(result != 1)
+		if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}

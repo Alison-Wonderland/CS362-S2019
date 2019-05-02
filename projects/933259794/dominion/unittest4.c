@@ -50,7 +50,7 @@ int main(){
 		result = buys;
 
 		//check how many total actions there are and output result
-		if(result != 1)
+		if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}

@@ -53,7 +53,7 @@ int main(){
 		result = drawntreasure;
 
 		//then check how many total treasure cards there are and output result
-		if(result != 2)
+		if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}

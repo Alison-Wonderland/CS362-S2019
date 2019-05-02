@@ -674,7 +674,7 @@ int new_adventurer(int card, int currentPlayer, struct gameState *state)
 int new_smithy(int card, int currentPlayer, int handPos, struct gameState *state)
 {
 	int i;
-      for (i = 0; i < 2; i++)
+      for (i = 0; i < 3; i++)
 	{//introducted bug that has player draw card twice
 	  drawCard(currentPlayer, state);
 	  drawCard(currentPlayer, state);
