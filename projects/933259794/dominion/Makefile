@@ -30,6 +30,20 @@ cardtest3: cardtest3.c dominion.o
 
 cardtest4: cardtest4.c dominion.o
 	gcc -o cardtest4 dominion.c rngs.c cardtest4.c $(CFLAGS)
+
+unittest1: unittest1.c dominion.o
+	gcc -o unittest1 dominion.c rngs.c unittest1.c $(CFLAGS)
+
+unittest2: unittest2.c dominion.o
+	gcc -o unittest2 dominion.c rngs.c unittest2.c $(CFLAGS)
+
+unittest3: unittest3.c dominion.o
+	gcc -o unittest3 dominion.c rngs.c unittest3.c $(CFLAGS)
+
+unittest4: unittest4.c dominion.o
+	gcc -o unittest4 dominion.c rngs.c unittest4.c $(CFLAGS)
+
+	
 	
 #########
 
