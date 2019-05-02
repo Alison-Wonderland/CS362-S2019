@@ -20,7 +20,6 @@
 the player draw three treasure cards instead of two, test the total drawn treasure cards
 pass = 2 total treasure drawn
 fail = any other number
-fail = any other value of treasure cards drawn 
 */
 
 int main(){
