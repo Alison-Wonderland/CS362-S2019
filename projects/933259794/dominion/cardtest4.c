@@ -38,7 +38,7 @@ int main(){
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);
 
-		printf("----------------- Card Test 3 ----------------\n");
+		printf("----------------- Card Test 4 ----------------\n");
 
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));

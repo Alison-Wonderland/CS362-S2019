@@ -31,23 +31,23 @@ int main(){
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 		int seed = 1000;
 		int numPlayers = 2;
-		struct gameState G, testG;
+		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 		int i;
 
 		// initialize a game state and player cards
-		initializeGame(numPlayers, k, seed, &G);
+		initializeGame(numPlayers, k, seed, &game);
 
 		printf("----------------- Unit Test 3 ----------------\n");
 
 		// copy the game state to a test case
-		memcpy(&testG, &G, sizeof(struct gameState));
+		memcpy(&test, &game, sizeof(struct gameState));
 
-		prevActions = testG.numActions;
-		cardEffect(village, choice1, choice2, choice3, &testG, handpos, &bonus);
+		prevActions = test.numActions;
+		cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
  
-		actions = testG.numActions - prevActions;
+		actions = test.numActions - prevActions;
 		result = actions;
 
 		//check how many total actions there are and output result
