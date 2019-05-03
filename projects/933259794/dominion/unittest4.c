@@ -21,9 +21,23 @@ pass = 1 buy added
 fail = any other number
 */
 
+//create custom assert to print out unit test results
+int ASSERT(int *result, int *expected, char *s) {
+  if(result != expected) 
+  {
+    printf("ASSERT FAIL! %s, Result: %d  Expected: %d\n", s, *result, *expected);
+    return 1;
+  }
+  else
+  {
+    printf("ASSERT SUCCESS! %s,  Result: %d  Expected: %d\n", s, *result, *expected);
+    return 0;
+  }
+}
+
 int main(){
 		int expected = 1;
-		int result = 1;
+		int result = 0;
 		int buys = 0;
 		int prevBuys = 0;
 
@@ -48,14 +62,15 @@ int main(){
 		buys = test.numBuys - prevBuys;
 		result = buys;
 
-		//check how many total actions there are and output result
-		if(result != expected)
+		//check how many buys there are and output result
+		ASSERT(&result, &expected, "Testing number of buys");
+		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}
 		else
 		{
 			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}
+		}*/
 
    }

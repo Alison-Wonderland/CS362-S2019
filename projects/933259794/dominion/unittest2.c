@@ -23,6 +23,20 @@ pass = 1 card drawn
 fail = any other number
 */
 
+//create custom assert to print out unit test results
+int ASSERT(int *result, int *expected, char *s) {
+  if(result != expected) 
+  {
+    printf("ASSERT FAIL! %s, Result: %d  Expected: %d\n", s, *result, *expected);
+    return 1;
+  }
+  else
+  {
+    printf("ASSERT SUCCESS! %s,  Result: %d  Expected: %d\n", s, *result, *expected);
+    return 0;
+  }
+}
+
 int main(){
 		int expected = 1;
 		int result = 0;
@@ -51,13 +65,14 @@ int main(){
 		result = drawnCards;
 
 		//check how many total drawn cards there are and output result
-		if(result != expected)
+		ASSERT(&result, &expected, "Testing number of drawn cards in hand");
+		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}
 		else
 		{
 			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}
+		}*/
 
    }

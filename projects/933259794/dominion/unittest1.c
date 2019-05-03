@@ -22,6 +22,20 @@ pass = 2 total treasure drawn
 fail = any other number
 */
 
+//create custom assert to print out unit test results
+int ASSERT(int *result, int *expected, char *s) {
+  if(result != expected) 
+  {
+    printf("ASSERT FAIL! %s, Result: %d  Expected: %d\n", s, *result, *expected);
+    return 1;
+  }
+  else
+  {
+    printf("ASSERT SUCCESS! %s,  Result: %d  Expected: %d\n", s, *result, *expected);
+    return 0;
+  }
+}
+
 int main(){
 		int expected = 2;
 		int result = 0;
@@ -53,13 +67,14 @@ int main(){
 		result = drawntreasure;
 
 		//then check how many total treasure cards there are and output result
-		if(result != expected)
+		ASSERT(&result, &expected, "Testing number of treasure cards in hand");
+		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}
 		else
 		{
 			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}
+		}*/
 
    }

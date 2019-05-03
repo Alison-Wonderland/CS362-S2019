@@ -20,6 +20,20 @@ pass = deck count - 3
 fail = deck count is any other number
 */
 
+//create custom assert to print out unit test results
+int ASSERT(int *result, int *expected, char *s) {
+  if(result != expected) 
+  {
+    printf("ASSERT FAIL! %s, Result: %d  Expected: %d\n", s, *result, *expected);
+    return 1;
+  }
+  else
+  {
+    printf("ASSERT SUCCESS! %s,  Result: %d  Expected: %d\n", s, *result, *expected);
+    return 0;
+  }
+}
+
 int main(){
 		int expected = 0;
 		int result = 0;
@@ -49,13 +63,14 @@ int main(){
 		 result = test.deckCount[0];
 
 		//check how many total cards there are in the deck and output result
-		if(result != expected)
+		ASSERT(&result, &expected, "Testing number of cards in deck");
+		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d\n", result, expected);
 		}
 		else
 		{
 			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}
+		}*/
 
    }

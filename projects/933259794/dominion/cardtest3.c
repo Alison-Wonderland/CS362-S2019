@@ -20,6 +20,20 @@ pass = correct decision tree is chosen when choice = 2
 fail = any other decision tree is chosen
 */
 
+//create custom assert to print out unit test results
+int ASSERT(int *result, int *expected, char *s) {
+  if(result != expected) 
+  {
+    printf("ASSERT FAIL! %s, Result: %d  Expected: %d\n", s, *result, *expected);
+    return 0;
+  }
+  else
+  {
+    printf("ASSERT SUCCESS! %s,  Result: %d  Expected: %d\n", s, *result, *expected);
+    return 1;
+  }
+}
+
 int main(){
 		int expected = 2;
 		int result = 0;
@@ -49,13 +63,14 @@ int main(){
 		result = test.coins;
 
 		//check how many total actions there are and output result
-		if(result != expected)
+		ASSERT(&result, &expected, "Testing number of coins");
+		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
 		}
 		else
 		{
 			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}
+		}*/
 
    }
