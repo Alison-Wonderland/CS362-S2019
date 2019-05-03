@@ -2,7 +2,8 @@
  Name: Kristin Ingellis
  Date: 04/30/2019
  Description: This card test examines the discard aspect of the 
- * refactored adventurer function which is named new_adventurer.
+ * refactored adventurer function which is named new_adventurer. It also 
+ * examines what happens with an invalid card parameter.
  * -----------------------------------------------------------------------
  */
 
@@ -17,8 +18,6 @@
 
 
 /*test new_adventurer function to verify the player discards a card 
-pass = card discarded
-fail = any other action
 */
 
 //create custom assert to print out unit test results
@@ -36,7 +35,7 @@ int ASSERT(int *result, int *expected, char *s) {
 }
 
 int main(){
-		int expected = 1;
+		int expected = 0;
 		int result = 0;
 
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
@@ -49,16 +48,24 @@ int main(){
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);
 
-		printf("----------------- Card Test 1 ----------------\n");
+		printf("----------------- Card Test 1: Adventurer ----------------\n");
 
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));
-		cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
-
-		result = test.discardCount[0];
+		int cardReturn = cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
 
 		//then check if discarded and output result
+		expected = 1;
+		result = test.discardCount[0];
 		ASSERT(&result, &expected, "Testing discard");
+		//check card effect return value with an invalid value in the card parameter
+		cardReturn = cardEffect(-2, choice1, choice2, choice3, &test, handpos, &bonus);
+		expected = -1;
+		result = cardReturn;
+		ASSERT(&result, &expected, "Testing card effect function return value when card parameter is invalid");
+		
+
+
 		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);

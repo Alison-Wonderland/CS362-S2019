@@ -2,7 +2,8 @@
  Name: Kristin Ingellis
  Date: 05/01/2019
  Description: This card test examines the deck count which should decrease by three cards
- *in the new_smithy function which has a bug that has the player draw two times per loop.
+ *in the new_smithy function which has a bug that has the player draw two times per loop
+ *and what happens with an incorrect card paramater entered in the cardEffect function
  * -----------------------------------------------------------------------
  */
 
@@ -49,21 +50,24 @@ int main(){
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);
 
-		printf("----------------- Card Test 2 ----------------\n");
+		printf("----------------- Card Test 2: Smithy ----------------\n");
 
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));
 
 		deckCount = test.deckCount[0];
 
-		cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
-		
-		 expected = deckCount - 3;
-
-		 result = test.deckCount[0];
+		int cardReturn = cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
 
 		//check how many total cards there are in the deck and output result
+		expected = deckCount - 3;
+		result = test.deckCount[0];
 		ASSERT(&result, &expected, "Testing number of cards in deck");
+		//check card effect return value with an invalid value in the card parameter
+		cardReturn = cardEffect(-2, choice1, choice2, choice3, &test, handpos, &bonus);
+		expected = -1;
+		result = cardReturn;
+		ASSERT(&result, &expected, "Testing card effect function return value when card parameter is invalid");
 		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d\n", result, expected);

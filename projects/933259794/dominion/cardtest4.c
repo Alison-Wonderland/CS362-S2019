@@ -2,7 +2,7 @@
  Name: Kristin Ingellis
  Date: 05/02/2019
  Description: This card test examines the state of the outpost flag for the outpost
- * card
+ * card and what happens with an incorrect card paramater entered in the cardEffect function
  * -----------------------------------------------------------------------
  */
 
@@ -35,7 +35,7 @@ int ASSERT(int *result, int *expected, char *s) {
 }
 
 int main(){
-		int expected = 1;
+		int expected = 0;
 		int result = 0;
 
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
@@ -48,17 +48,22 @@ int main(){
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);
 
-		printf("----------------- Card Test 4 ----------------\n");
+		printf("----------------- Card Test 4: Outpost ----------------\n");
 
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));
 
-		cardEffect(outpost, choice1, choice2, choice3, &test, handpos, &bonus);
+		int cardReturn = cardEffect(outpost, choice1, choice2, choice3, &test, handpos, &bonus);
  
-		result = test.outpostPlayed;
-
 		//check how outpost flag and output result
+		expected = 0;
+		result = test.outpostPlayed;
 		ASSERT(&result, &expected, "Testing outpost flag state");
+		//check card effect return value with an invalid value in the card parameter
+		cardReturn = cardEffect(-2, choice1, choice2, choice3, &test, handpos, &bonus);
+		expected = -1;
+		result = cardReturn;
+		ASSERT(&result, &expected, "Testing card effect function return value when card parameter is invalid");
 		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
