@@ -46,6 +46,7 @@ int main(){
 		int numPlayers = 2;
 		int playerTwoHand = 0;
 		int playerTwoDeck = 0;
+		int actions = 0;
 		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
@@ -62,6 +63,7 @@ int main(){
 		//plays the adventurer card
 		playerTwoHand = test.handCount[1];
 		playerTwoDeck = test.deckCount[1];
+		actions = test.numActions;
 		cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
 
 		for (i = 0; i < test.handCount[0]; i++)
@@ -73,11 +75,20 @@ int main(){
 		//then check how many total treasure cards there are and output result
 		expected = 2;
 		result = drawntreasure;
-		ASSERT(&result, &expected, "Testing number of treasure cards in hand");
-
+		ASSERT(&result, &expected, "Testing number of treasure cards in hand for current player");
+		//check player 2 hand count is unchanged
 		expected = playerTwoHand;
 		result = test.handCount[1];
-		ASSERT(&result, &expected, "Testing player two hand count");
+		ASSERT(&result, &expected, "Testing player two, opponent, hand count");
+		//check player 2 deck count is unchanged
+		expected = playerTwoDeck;
+		result = test.deckCount[1];
+		ASSERT(&result, &expected, "Testing player two, opponent, deck count");
+		//check if actions changed which shouldn't for the adventurer card
+		expected = actions;
+		result = test.numActions;
+		ASSERT(&result, &expected, "Testing number of actions for current player");
+
 		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
