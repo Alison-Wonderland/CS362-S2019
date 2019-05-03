@@ -62,7 +62,7 @@ int main(){
 		expected = prevCoinState + 2;
 		result = test.coins;
 
-		//check how many total actions there are and output result
+		//check how many total coins were added and output result
 		ASSERT(&result, &expected, "Testing number of coins");
 		/*if(result != expected)
 		{

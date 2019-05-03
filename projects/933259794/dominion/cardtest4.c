@@ -57,7 +57,7 @@ int main(){
  
 		result = test.outpostPlayed;
 
-		//check how many total actions there are and output result
+		//check how outpost flag and output result
 		ASSERT(&result, &expected, "Testing outpost flag state");
 		/*if(result != expected)
 		{
