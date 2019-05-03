@@ -22,7 +22,7 @@ fail = deck count is any other number
 
 //create custom assert to print out unit test results
 int ASSERT(int *result, int *expected, char *s) {
-  if(result != expected) 
+  if(*result != *expected) 
   {
     printf("ASSERT FAIL! %s, Result: %d  Expected: %d\n", s, *result, *expected);
     return 1;
