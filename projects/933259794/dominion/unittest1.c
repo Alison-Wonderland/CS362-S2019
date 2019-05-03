@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------
  Name: Kristin Ingellis
  Date: 04/30/2019
- Description: This unit test examines the draw treasure aspect of the 
- * refactored adventurer function which is named new_adventurer.
+ Description: This unit test examines the draw treasure, opponent hand and deck sizes, and actions
+ * in relation to the refactored adventurer function which is named new_adventurer.
  * -----------------------------------------------------------------------
  */
 
@@ -17,9 +17,8 @@
 
 
 /*test new_adventurer function which includes refactored code and an introduced bug which lets 
-the player draw three treasure cards instead of two, test the total drawn treasure cards
-pass = 2 total treasure drawn
-fail = any other number
+the player draw three treasure cards instead of two, test the total drawn treasure cards will fail 
+using the refactored code.
 */
 
 //create custom assert to print out unit test results
@@ -55,7 +54,7 @@ int main(){
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &game);
 
-		printf("----------------- Unit Test 1 ----------------\n");
+		printf("----------------- Unit Test 1: Adventurer ----------------\n");
 
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));

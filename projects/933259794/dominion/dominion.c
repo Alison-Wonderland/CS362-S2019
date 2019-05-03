@@ -677,7 +677,7 @@ int new_smithy(int card, int currentPlayer, int handPos, struct gameState *state
       for (i = 0; i < 3; i++)
 	{//introducted bug that has player draw card twice
 	  drawCard(currentPlayer, state);
-	  //drawCard(currentPlayer, state);
+	  drawCard(currentPlayer, state);
 	}
 			
       //discard card from hand

@@ -56,9 +56,6 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 	cardtest4 >> unittestresults.out
 	gcov dominion.c -b >> unittestresults.out 
 
-	gcov -c -b -f dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out 
-
 cardtest1: cardtest1.c dominion.o
 	gcc -o cardtest1 dominion.c rngs.c cardtest1.c $(CFLAGS)
 
