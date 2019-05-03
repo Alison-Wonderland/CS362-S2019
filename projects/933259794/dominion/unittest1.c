@@ -37,13 +37,15 @@ int ASSERT(int *result, int *expected, char *s) {
 }
 
 int main(){
-		int expected = 2;
+		int expected = 0;
 		int result = 0;
 		int drawntreasure = 0;
 
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 		int seed = 1000;
 		int numPlayers = 2;
+		int playerTwoHand = 0;
+		int playerTwoDeck = 0;
 		struct gameState game, test;
 		int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
@@ -56,6 +58,10 @@ int main(){
 
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));
+		//save state of player 2 hand size and deck size to verify no changes occur after player 1
+		//plays the adventurer card
+		playerTwoHand = test.handCount[1];
+		playerTwoDeck = test.deckCount[1];
 		cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
 
 		for (i = 0; i < test.handCount[0]; i++)
@@ -64,10 +70,14 @@ int main(){
 				drawntreasure++;
 		}
 
-		result = drawntreasure;
-
 		//then check how many total treasure cards there are and output result
+		expected = 2;
+		result = drawntreasure;
 		ASSERT(&result, &expected, "Testing number of treasure cards in hand");
+
+		expected = playerTwoHand;
+		result = test.handCount[1];
+		ASSERT(&result, &expected, "Testing player two hand count");
 		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
