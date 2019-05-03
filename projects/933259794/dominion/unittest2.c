@@ -60,7 +60,7 @@ int main(){
 		memcpy(&test, &game, sizeof(struct gameState));
 		originalHandCount = test.handCount[0];
 		actionsCurrentPlayer = test.numActions;
-		cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
+		int cardReturn = cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
  
 		drawnCards = test.handCount[0] - originalHandCount;
 
@@ -77,6 +77,11 @@ int main(){
 		expected = actionsCurrentPlayer;
 		result = test.numActions;
 		ASSERT(&result, &expected, "Testing number of actions for current player");
+
+			//check card effect return value
+		expected = 0;
+		result = cardReturn;
+		ASSERT(&result, &expected, "Testing card effect function return value");
 
 
 		/*if(result != expected)

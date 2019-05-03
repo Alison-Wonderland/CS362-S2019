@@ -38,6 +38,7 @@ int main(){
 		int buys = 0;
 		int prevBuys = 0;
 		int handCount = 0;
+		int opponenetDeck = 0;
 
 		int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 		int seed = 1000;
@@ -55,7 +56,9 @@ int main(){
 		memcpy(&test, &game, sizeof(struct gameState));
 		handCount = test.handCount[1];
 		prevBuys = test.numBuys;
-		cardEffect(council_room, choice1, choice2, choice3, &test, handpos, &bonus);
+		opponenetDeck = test.deckCount[1];
+		int actions = test.numActions;
+		int cardReturn = cardEffect(council_room, choice1, choice2, choice3, &test, handpos, &bonus);
  
 		buys = test.numBuys - prevBuys;
 
@@ -67,6 +70,17 @@ int main(){
 		result = test.handCount[1];
 		expected = handCount + 1;
 		ASSERT(&result, &expected, "Testing number of cards opponent draws");
+		//check opponent deck which should have one less after drawing a card
+		result = test.deckCount[1];
+		expected = opponenetDeck - 1;
+		ASSERT(&result, &expected, "Testing number of cards opponent has in deck");
+		expected = 0;
+		result = cardReturn;
+		ASSERT(&result, &expected, "Testing card effect function return value");
+		//check how many total actions there are and output result
+		expected = 1;
+		result = actions;
+		ASSERT(&result, &expected, "Testing number of actions");
 
 		/*if(result != expected)
 		{

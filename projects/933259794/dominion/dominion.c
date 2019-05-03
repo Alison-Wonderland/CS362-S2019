@@ -649,7 +649,7 @@ int new_adventurer(int card, int currentPlayer, struct gameState *state)
 	int z = 0;
 	int cardDrawn;
 	int temphand[MAX_HAND];
-	//bug, draw treasure will allow three insetad of <2
+	//bug, draw treasure will allow three instead of <2
     while(drawntreasure<3){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 		shuffle(currentPlayer, state);

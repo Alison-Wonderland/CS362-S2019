@@ -63,7 +63,7 @@ int main(){
 		playerTwoHand = test.handCount[1];
 		playerTwoDeck = test.deckCount[1];
 		actions = test.numActions;
-		cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
+		int cardReturn = cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
 
 		for (i = 0; i < test.handCount[0]; i++)
 		{
@@ -87,6 +87,10 @@ int main(){
 		expected = actions;
 		result = test.numActions;
 		ASSERT(&result, &expected, "Testing number of actions for current player");
+		//check card effect return value
+		expected = 0;
+		result = cardReturn;
+		ASSERT(&result, &expected, "Testing card effect function return value");
 
 		/*if(result != expected)
 		{

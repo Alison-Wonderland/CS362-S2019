@@ -62,7 +62,7 @@ int main(){
 		playerTwoDeck = test.deckCount[1];
 
 		prevActions = test.numActions;
-		cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
+		int cardReturn = cardEffect(village, choice1, choice2, choice3, &test, handpos, &bonus);
  
 		actions = test.numActions - prevActions;
 
@@ -78,6 +78,10 @@ int main(){
 		expected = playerTwoDeck;
 		result = test.deckCount[1];
 		ASSERT(&result, &expected, "Testing player two, opponent, deck count");
+		expected = 0;
+		result = cardReturn;
+		ASSERT(&result, &expected, "Testing card effect function return value");
+		
 		/*if(result != expected)
 		{
 			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
