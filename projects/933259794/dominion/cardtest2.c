@@ -3,7 +3,8 @@
  Date: 05/01/2019
  Description: This card test examines the deck count which should decrease by three cards
  *in the new_smithy function which has a bug that has the player draw two times per loop
- *and what happens with an incorrect card paramater entered in the cardEffect function
+ *and what happens with an incorrect card parameter entered in the cardEffect function.
+ *It also tests that one card is played and that coin values haven't chnaged.
  * -----------------------------------------------------------------------
  */
 
@@ -15,11 +16,6 @@
 #include <math.h>
 #include "rngs.h"
 #include <stdlib.h>
-
-/*test new_smithy function and that it does decrease the deck count correctly
-pass = deck count - 3
-fail = deck count is any other number
-*/
 
 //create custom assert to print out unit test results
 int ASSERT(int *result, int *expected, char *s) {
@@ -63,27 +59,21 @@ int main(){
 		expected = deckCount - 3;
 		result = test.deckCount[0];
 		ASSERT(&result, &expected, "Testing number of cards in deck");
+
 		//verifying there is no effect on coins
 		expected = prevCoinState;
 		result = test.coins;
 		ASSERT(&result, &expected, "Testing coin value");
+
 		//verifying one card was played
 		expected = 1;
 		result = test.playedCardCount;
 		ASSERT(&result, &expected, "Testing played cards count");
+
 		//check card effect return value with an invalid value in the card parameter
 		cardReturn = cardEffect(-2, choice1, choice2, choice3, &test, handpos, &bonus);
 		expected = -1;
 		result = cardReturn;
 		ASSERT(&result, &expected, "Testing card effect function return value when card parameter is invalid");
-
-		/*if(result != expected)
-		{
-			printf("FAIL! Result: %d  Expected: %d\n", result, expected);
-		}
-		else
-		{
-			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}*/
 
    }

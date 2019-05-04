@@ -70,25 +70,20 @@ int main(){
 		expected = 2;
 		result = actions;
 		ASSERT(&result, &expected, "Testing number of actions");
+
 		//check player 2 hand count is unchanged
 		expected = playerTwoHand;
 		result = test.handCount[1];
 		ASSERT(&result, &expected, "Testing player two, opponent, hand count");
+
 		//check player 2 deck count is unchanged
 		expected = playerTwoDeck;
 		result = test.deckCount[1];
 		ASSERT(&result, &expected, "Testing player two, opponent, deck count");
+		
+		//testing card effect function return value
 		expected = 0;
 		result = cardReturn;
 		ASSERT(&result, &expected, "Testing card effect function return value");
 		
-		/*if(result != expected)
-		{
-			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
-		}
-		else
-		{
-			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}*/
-
    }

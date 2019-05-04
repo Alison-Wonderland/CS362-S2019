@@ -75,30 +75,25 @@ int main(){
 		expected = 2;
 		result = drawntreasure;
 		ASSERT(&result, &expected, "Testing number of treasure cards in hand for current player");
+
 		//check player 2 hand count is unchanged
 		expected = playerTwoHand;
 		result = test.handCount[1];
 		ASSERT(&result, &expected, "Testing player two, opponent, hand count");
+
 		//check player 2 deck count is unchanged
 		expected = playerTwoDeck;
 		result = test.deckCount[1];
 		ASSERT(&result, &expected, "Testing player two, opponent, deck count");
+
 		//check if actions changed which shouldn't for the adventurer card
 		expected = actions;
 		result = test.numActions;
 		ASSERT(&result, &expected, "Testing number of actions for current player");
+
 		//check card effect return value
 		expected = 0;
 		result = cardReturn;
 		ASSERT(&result, &expected, "Testing card effect function return value");
-
-		/*if(result != expected)
-		{
-			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
-		}
-		else
-		{
-			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}*/
 
    }

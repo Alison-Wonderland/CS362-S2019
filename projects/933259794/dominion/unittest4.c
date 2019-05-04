@@ -66,29 +66,25 @@ int main(){
 		result = buys;
 		expected = 1;
 		ASSERT(&result, &expected, "Testing number of buys");
+
 		//check if other players drew cards
 		result = test.handCount[1];
 		expected = handCount + 1;
 		ASSERT(&result, &expected, "Testing number of cards opponent draws");
+
 		//check opponent deck which should have one less after drawing a card
 		result = test.deckCount[1];
 		expected = opponenetDeck - 1;
 		ASSERT(&result, &expected, "Testing number of cards opponent has in deck");
+
+		//check return value of card effect funtion
 		expected = 0;
 		result = cardReturn;
 		ASSERT(&result, &expected, "Testing card effect function return value");
+
 		//check how many total actions there are and output result
 		expected = 1;
 		result = actions;
 		ASSERT(&result, &expected, "Testing number of actions");
-
-		/*if(result != expected)
-		{
-			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
-		}
-		else
-		{
-			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}*/
 
    }

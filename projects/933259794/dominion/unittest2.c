@@ -78,19 +78,9 @@ int main(){
 		result = test.numActions;
 		ASSERT(&result, &expected, "Testing number of actions for current player");
 
-			//check card effect return value
+		//testing card effect function return value
 		expected = 0;
 		result = cardReturn;
 		ASSERT(&result, &expected, "Testing card effect function return value");
 
-
-		/*if(result != expected)
-		{
-			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
-		}
-		else
-		{
-			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}*/
-
-   }
+}

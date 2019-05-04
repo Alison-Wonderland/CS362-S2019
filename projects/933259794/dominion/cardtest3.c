@@ -17,8 +17,6 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-//test the choice and it's affect on the results, this one uses the coin option 
-
 //create custom assert to print out unit test results
 int ASSERT(int *result, int *expected, char *s) {
   if(*result != *expected) 
@@ -82,15 +80,5 @@ int main(){
 		expected = -1;
 		result = cardReturn;
 		ASSERT(&result, &expected, "Testing card effect function return value when card parameter is invalid");
-
-
-		/*if(result != expected)
-		{
-			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
-		}
-		else
-		{
-			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}*/
 
    }

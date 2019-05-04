@@ -3,7 +3,9 @@
  Date: 04/30/2019
  Description: This card test examines the discard aspect of the 
  * refactored adventurer function which is named new_adventurer. It also 
- * examines what happens with an invalid card parameter.
+ * examines what happens with an invalid card parameter. It also checks
+ * the coin value which should be updated correctly after coin update function
+ * is called.
  * -----------------------------------------------------------------------
  */
 
@@ -15,10 +17,6 @@
 #include <math.h>
 #include "rngs.h"
 #include <stdlib.h>
-
-
-/*test new_adventurer function to verify the player discards a card 
-*/
 
 //create custom assert to print out unit test results
 int ASSERT(int *result, int *expected, char *s) {
@@ -59,10 +57,12 @@ int main(){
 		expected = 1;
 		result = test.discardCount[0];
 		ASSERT(&result, &expected, "Testing discard");
+
 		//verifying there is no effect on coins before update coins is called
 		expected = prevCoinState;
 		result = test.coins;
 		ASSERT(&result, &expected, "Testing coin value before update coins is called");
+
 		//coin value after updating coins 
 		int player = whoseTurn(&test);
 		updateCoins(player, &test, bonus);
@@ -94,17 +94,5 @@ int main(){
 		expected = -1;
 		result = cardReturn;
 		ASSERT(&result, &expected, "Testing card effect function return value when card parameter is invalid");
-
-		
-
-
-		/*if(result != expected)
-		{
-			printf("FAIL! Result: %d  Expected: %d \n", result, expected);
-		}
-		else
-		{
-			printf("SUCCESS! Result: %d  Expected: %d \n", result, expected);
-		}*/
 
    }
