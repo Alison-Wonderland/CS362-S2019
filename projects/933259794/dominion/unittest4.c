@@ -55,6 +55,7 @@ int main(){
 		// copy the game state to a test case
 		memcpy(&test, &game, sizeof(struct gameState));
 		handCount = test.handCount[1];
+		int handCountPlayerZero = test.handCount[0];
 		prevBuys = test.numBuys;
 		opponenetDeck = test.deckCount[1];
 		int actions = test.numActions;
@@ -66,6 +67,11 @@ int main(){
 		result = buys;
 		expected = 1;
 		ASSERT(&result, &expected, "Testing number of buys");
+
+		//check if current player drew cards
+		result = test.handCount[0];
+		expected = handCountPlayerZero;
+		ASSERT(&result, &expected, "Testing number of cards current player draws");
 
 		//check if other players drew cards
 		result = test.handCount[1];
