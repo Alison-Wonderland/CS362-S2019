@@ -35,13 +35,13 @@ int main() {
 		game.discardCount[player] = rand() % MAX_DECK;
 		int pastHandCount = game.handCount[player] = rand() % MAX_HAND;
 		int opponentHandCount = game.handCount[1] = rand() % MAX_HAND;
-		int pastNumBuys = game.numBuys;
+		int prevNumBuys = game.numBuys;
 
 		//player council room card
 		cardEffect(council_room, choice1, choice2, choice3, &game, handpos, &bonus);
 
         //check what happens after council room is played
-		if (pastHandCount + 3 == game.handCount[player] && pastNumBuys + 1 == game.numBuys && opponentHandCount + 1 == game.handCount[1]) {
+		if (pastHandCount + 3 == game.handCount[player] && prevNumBuys + 1 == game.numBuys && opponentHandCount + 1 == game.handCount[1]) {
 			pass++;
 		}
 		else
@@ -49,6 +49,4 @@ int main() {
 	}
 	printf("\n\n----------------- Council Room Test Results ----------------\n");
 	printf("\nTest Completed: %d \n  Success: %d \n Fails: %d \n\n", tests, pass, fail);
-
-	return 0;
 }

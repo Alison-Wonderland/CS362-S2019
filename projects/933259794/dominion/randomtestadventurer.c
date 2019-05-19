@@ -62,7 +62,4 @@ int main() {
 	}
 	printf("\n\n----------------- Adventurer Test Results ----------------\n");
 	printf("\nTest Completed: %d \n  Success: %d \n Fails: %d \n\n", tests, pass, fail);
-
-
-	return 0;
 }

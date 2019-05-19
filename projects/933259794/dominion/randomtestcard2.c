@@ -49,5 +49,4 @@ int main() {
 
 	printf("----------------- Smithy Test Results ----------------\n");
 	printf("\n\nTest Completed: %d \n  Success: %d \n Fails: %d \n\n", tests, pass, fail);
-	return 0;
 }
